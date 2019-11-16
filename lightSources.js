@@ -164,37 +164,26 @@ LightSource.prototype.setRotationSpeed = function( s ) {
 
 var lightSources = [];
 
-// Light source 0 TOP WHITE
+// Light source 0 and 1 WHITE
 
 lightSources.push( new LightSource() );
 
-lightSources[0].setPosition( 0.0, 0.0, 1.0, 0.0 );
+lightSources[0].setPosition( 0.0, -2.0, 1.0, 1.0 );
 
 lightSources[0].setIntensity( 1.0, 1.0, 1.0 );
 
 lightSources[0].setAmbIntensity( 0.2, 0.2, 0.2 );
 
-// Light source 1 Right Blue
-/*
 lightSources.push( new LightSource() );
 
-lightSources[1].setPosition( -2.0, 0.0, 0.0, 0.0 );
+lightSources[1].setPosition( 0.0, 2.0, 1.0, 1.0 );
 
-lightSources[1].setIntensity( 0.0, 0.0, 1.0 );
+lightSources[1].setIntensity( 1.0, 1.0, 1.0 );
 
 lightSources[1].setAmbIntensity( 0.2, 0.2, 0.2 );
 
-// Light source 1 Left Red
 
-lightSources.push( new LightSource() );
 
-lightSources[2].setPosition( 2.0, 0.0, 0.0, 0.0 );
-
-lightSources[2].setIntensity( 0.0, 0.0, 0.0 );
-
-lightSources[2].setAmbIntensity( 0.2, 0.2, 0.2 );
-
-*/
 
 
 
