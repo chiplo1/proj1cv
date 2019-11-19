@@ -52,6 +52,9 @@ var projectionType = 0;
 
 var pos_Viewer = [ 0.0, 0.0, 0.0, 1.0 ];
 
+var status = 'paused';
+var up = true;
+var right = true;
 
 //----------------------------------------------------------------------------
 //
@@ -406,12 +409,38 @@ function animate() {
 				lightSources[i].setRotAngleYY( angle );
 			}
 		}
-}
+	}
 	
 	lastTime = timeNow;
 }
 
+function game() {
+	
+	var timeNow = new Date().getTime();
+	
+	//var pos = {	}
+	
+	if(sceneModels[2].tx >=  0.95) right = false;
+	if(sceneModels[2].tx <= -0.95) right = true;
+	if(sceneModels[2].ty >=  0.9) up = false;
+	if(sceneModels[2].ty <= -0.9) up = true;
+	
+	if( lastTime != 0 ) {
+		
+		var elapsed = timeNow - lastTime;
+		
+		// Ball moving
+		
+		if(up) sceneModels[2].ty += 0.01;
+		else sceneModels[2].ty -= 0.01;
+		
+		if(right) sceneModels[2].tx += 0.005;
+		else sceneModels[2].tx -= 0.005;
 
+	}
+	
+	lastTime = timeNow;
+}
 //----------------------------------------------------------------------------
 
 // Timer
@@ -423,6 +452,8 @@ function tick() {
 	drawScene();
 	
 	//animate();
+	
+	game();
 	
 	handleKeys();
 }
