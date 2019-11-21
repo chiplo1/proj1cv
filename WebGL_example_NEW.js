@@ -52,7 +52,7 @@ var projectionType = 0;
 
 var pos_Viewer = [ 0.0, 0.0, 0.0, 1.0 ];
 
-var status = 'paused';
+var status = 'begin';
 var up = true;
 var right = true;
 
@@ -418,10 +418,31 @@ function game() {
 	
 	var timeNow = new Date().getTime();
 	
-	//var pos = {	}
+	// Check if ball hits stick
 	
-	if(sceneModels[2].tx >=  0.95) right = false;
-	if(sceneModels[2].tx <= -0.95) right = true;
+	if((sceneModels[2].tx >=  0.86 && sceneModels[2].tx <=  0.92 )){
+		if(sceneModels[1].ty >= (sceneModels[2].ty-0.2) && sceneModels[1].ty <= (sceneModels[2].ty+0.2))
+		right = false;
+	}
+	if((sceneModels[2].tx <= -0.86 && sceneModels[2].tx >= -0.92 )){
+		if(sceneModels[0].ty >= (sceneModels[2].ty-0.2) && sceneModels[0].ty <= (sceneModels[2].ty+0.2))
+		right = true;;
+	}
+	// Point done, restart ball pos
+	if(sceneModels[2].tx >=  0.95){
+		sceneModels[2].tx = 0;
+		sceneModels[2].ty = 0;
+		right = Math.random() >= 0.5;
+		up = Math.random() >= 0.5;
+	}
+	if(sceneModels[2].tx <= -0.95){
+		sceneModels[2].tx = 0;
+		sceneModels[2].ty = 0;
+		right = Math.random() >= 0.5;
+		up = Math.random() >= 0.5;
+	}
+
+	// inverter quando bate em cima ou em baixo
 	if(sceneModels[2].ty >=  0.9) up = false;
 	if(sceneModels[2].ty <= -0.9) up = true;
 	
@@ -431,15 +452,16 @@ function game() {
 		
 		// Ball moving
 		
-		if(up) sceneModels[2].ty += 0.01;
-		else sceneModels[2].ty -= 0.01;
+		if(up) sceneModels[2].ty += 0.02;
+		else sceneModels[2].ty -= 0.02;
 		
-		if(right) sceneModels[2].tx += 0.005;
-		else sceneModels[2].tx -= 0.005;
+		if(right) sceneModels[2].tx += 0.01;
+		else sceneModels[2].tx -= 0.01;
 
 	}
-	
+
 	lastTime = timeNow;
+
 }
 //----------------------------------------------------------------------------
 
@@ -453,7 +475,7 @@ function tick() {
 	
 	//animate();
 	
-	game();
+	if(status=='play') game();
 	
 	handleKeys();
 }
@@ -516,6 +538,40 @@ function setEventListeners( canvas ){
 	document.onkeydown = handleKeyDown;
     
     document.onkeyup = handleKeyUp;
+	
+	document.addEventListener("keypress", function(event){
+				
+					// Getting the pressed key 
+					
+					// Updating rec. depth and drawing again
+				
+					var key = event.keyCode; // ASCII
+				
+					switch(key){
+						case 80 : // pause
+							if (status=='begin'){
+								right = Math.random() >= 0.5;
+								up = Math.random() >= 0.5;
+								status='play';
+							}
+							else{
+								if (status == 'pause') status = 'play';
+								else status = 'pause';
+							}	
+						break;
+						case 112 : // pause
+							if (status=='begin'){
+								right = Math.random() >= 0.5;
+								up = Math.random() >= 0.5;
+								status='play';
+							}
+							else{
+								if (status == 'pause') status = 'play';
+								else status = 'pause';
+							}
+						break;
+					}
+	});
 	
      
 }
@@ -637,32 +693,32 @@ function runWebGL() {
 var currentlyPressedKeys = {};
 
 function handleKeys() {
-	
-	if (currentlyPressedKeys[87]) {
+	if (status=='play'){
+		if (currentlyPressedKeys[87]) {
+			
+			// W key
+			if (sceneModels[0].ty < 0.75) sceneModels[0].ty += 0.02;
+		}
+		if (currentlyPressedKeys[83]) {
+			
+			// S key
+			
+			if (sceneModels[0].ty > -0.75) sceneModels[0].ty -= 0.02;
+		}
 		
-		// W key
-		if (sceneModels[0].ty < 0.75) sceneModels[0].ty += 0.02;
+		if (currentlyPressedKeys[38]) {
+			
+			// up key
+			
+			if (sceneModels[1].ty < 0.75) sceneModels[1].ty += 0.02;
+		}
+		
+		if (currentlyPressedKeys[40]) {
+			
+			// down key
+			
+			if (sceneModels[1].ty > -0.75) sceneModels[1].ty -= 0.02;
+		}	
 	}
-	if (currentlyPressedKeys[83]) {
-		
-		// S key
-		
-		if (sceneModels[0].ty > -0.75) sceneModels[0].ty -= 0.02;
-	}
-	
-	if (currentlyPressedKeys[38]) {
-		
-		// up key
-		
-		if (sceneModels[1].ty < 0.75) sceneModels[1].ty += 0.02;
-	}
-	
-	if (currentlyPressedKeys[40]) {
-		
-		// down key
-		
-		if (sceneModels[1].ty > -0.75) sceneModels[1].ty -= 0.02;
-	}
-	
 }
 
