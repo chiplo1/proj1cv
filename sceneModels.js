@@ -270,6 +270,17 @@ sceneModels[2].kDiff = [ 0.0, 1.0, 0.0 ];
 
 sceneModels[2].kSpec = [ 0.0, 1.0, 0.0 ];
 
+// Model 3 --- Background
+
+sceneModels.push( new cubeModel( 1 ) );
+
+sceneModels[3].tx = 0.0; sceneModels[3].ty = 0; sceneModels[3].tz = -1.0;
+
+sceneModels[3].sx = 1.4; sceneModels[3].sy = 1.4 ; sceneModels[3].sz = 0.1;
+
+sceneModels[3].kDiff = [ 1.0, 1.0, 0.0 ];
+
+sceneModels[3].kSpec = [ 1.0, 1.0, 0.0 ];
 
 
 

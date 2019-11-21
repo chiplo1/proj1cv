@@ -44,13 +44,15 @@ var primitiveType = null;
  
 // To allow choosing the projection type
 
-var projectionType = 0;
+var projectionType = 1;
 
 // NEW --- The viewer position
 
 // It has to be updated according to the projection type
 
 var pos_Viewer = [ 0.0, 0.0, 0.0, 1.0 ];
+
+// Game variables
 
 var status = 'begin';
 var up = true;
@@ -432,7 +434,9 @@ function game() {
 		right = true;;
 		count++;
 	}
+	
 	// Point done, restart ball pos
+
 	if(sceneModels[2].tx >=  0.95){
 		count = 0;
 		nivel = 1;
@@ -529,10 +533,10 @@ function setEventListeners( canvas ){
 				
 		switch(p){
 			
-			case 0 : projectionType = 0;
+			case 0 : projectionType = 1;
 				break;
 			
-			case 1 : projectionType = 1;
+			case 1 : projectionType = 0;
 				break;
 		}  	
 	}); 
@@ -710,27 +714,27 @@ function handleKeys() {
 		if (currentlyPressedKeys[87]) {
 			
 			// W key
-			if (sceneModels[0].ty < 0.75) sceneModels[0].ty += 0.02;
+			if (sceneModels[0].ty < 0.75) sceneModels[0].ty += 0.03;
 		}
 		if (currentlyPressedKeys[83]) {
 			
 			// S key
 			
-			if (sceneModels[0].ty > -0.75) sceneModels[0].ty -= 0.02;
+			if (sceneModels[0].ty > -0.75) sceneModels[0].ty -= 0.03;
 		}
 		
 		if (currentlyPressedKeys[38]) {
 			
 			// up key
 			
-			if (sceneModels[1].ty < 0.75) sceneModels[1].ty += 0.02;
+			if (sceneModels[1].ty < 0.75) sceneModels[1].ty += 0.03;
 		}
 		
 		if (currentlyPressedKeys[40]) {
 			
 			// down key
 			
-			if (sceneModels[1].ty > -0.75) sceneModels[1].ty -= 0.02;
+			if (sceneModels[1].ty > -0.75) sceneModels[1].ty -= 0.03;
 		}	
 	}
 }
