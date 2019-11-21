@@ -55,6 +55,8 @@ var pos_Viewer = [ 0.0, 0.0, 0.0, 1.0 ];
 var status = 'begin';
 var up = true;
 var right = true;
+var nivel = 1;
+var count = 0;
 
 //----------------------------------------------------------------------------
 //
@@ -423,19 +425,25 @@ function game() {
 	if((sceneModels[2].tx >=  0.86 && sceneModels[2].tx <=  0.92 )){
 		if(sceneModels[1].ty >= (sceneModels[2].ty-0.2) && sceneModels[1].ty <= (sceneModels[2].ty+0.2))
 		right = false;
+		count++;
 	}
 	if((sceneModels[2].tx <= -0.86 && sceneModels[2].tx >= -0.92 )){
 		if(sceneModels[0].ty >= (sceneModels[2].ty-0.2) && sceneModels[0].ty <= (sceneModels[2].ty+0.2))
 		right = true;;
+		count++;
 	}
 	// Point done, restart ball pos
 	if(sceneModels[2].tx >=  0.95){
+		count = 0;
+		nivel = 1;
 		sceneModels[2].tx = 0;
 		sceneModels[2].ty = 0;
 		right = Math.random() >= 0.5;
 		up = Math.random() >= 0.5;
 	}
 	if(sceneModels[2].tx <= -0.95){
+		count = 0;
+		nivel = 1;
 		sceneModels[2].tx = 0;
 		sceneModels[2].ty = 0;
 		right = Math.random() >= 0.5;
@@ -452,12 +460,17 @@ function game() {
 		
 		// Ball moving
 		
-		if(up) sceneModels[2].ty += 0.02;
-		else sceneModels[2].ty -= 0.02;
+		if(up) sceneModels[2].ty += nivel * 0.005 + 0.01;
+		else sceneModels[2].ty -= nivel * 0.005 + 0.01;
 		
-		if(right) sceneModels[2].tx += 0.01;
-		else sceneModels[2].tx -= 0.01;
+		if(right) sceneModels[2].tx += nivel * 0.0025 + 0.005;
+		else sceneModels[2].tx -= nivel * 0.0025 + 0.005;
 
+	}
+	
+	if(count == 4){
+		nivel++;
+		count=0;
 	}
 
 	lastTime = timeNow;
