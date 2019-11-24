@@ -59,6 +59,8 @@ var up = true;
 var right = true;
 var nivel = 1;
 var count = 0;
+var playerOne = 0;
+var playerTwo = 0;
 
 //----------------------------------------------------------------------------
 //
@@ -90,7 +92,7 @@ function countFrames() {
        
        elapsedTime -= 1000;
 	   
-	   document.getElementById('fps').innerHTML = 'fps:' + fps;
+	   document.getElementById('fps').innerHTML = 'Frames per Second:' + fps;
    }
 }
 
@@ -421,7 +423,6 @@ function animate() {
 function game() {
 	
 	var timeNow = new Date().getTime();
-	
 	// Check if ball hits stick
 	
 	if((sceneModels[2].tx >=  0.86 && sceneModels[2].tx <=  0.92 )){
@@ -440,6 +441,7 @@ function game() {
 	if(sceneModels[2].tx >=  0.95){
 		count = 0;
 		nivel = 1;
+		playerOne++;
 		sceneModels[2].tx = 0;
 		sceneModels[2].ty = 0;
 		right = Math.random() >= 0.5;
@@ -448,6 +450,7 @@ function game() {
 	if(sceneModels[2].tx <= -0.95){
 		count = 0;
 		nivel = 1;
+		playerTwo++;
 		sceneModels[2].tx = 0;
 		sceneModels[2].ty = 0;
 		right = Math.random() >= 0.5;
@@ -478,6 +481,10 @@ function game() {
 	}
 
 	lastTime = timeNow;
+
+	document.getElementById('level').innerHTML = 'Speed Level:' + nivel;
+	document.getElementById('one').innerHTML = 'Player One:' + playerOne;
+	document.getElementById('two').innerHTML = 'Player Two:' + playerTwo;
 
 }
 //----------------------------------------------------------------------------
@@ -559,7 +566,7 @@ function setEventListeners( canvas ){
 	document.addEventListener("keypress", function(event){
 				
 					// Getting the pressed key 
-					
+
 					// Updating rec. depth and drawing again
 				
 					var key = event.keyCode; // ASCII
@@ -712,30 +719,39 @@ var currentlyPressedKeys = {};
 function handleKeys() {
 	if (status=='play'){
 		if (currentlyPressedKeys[87]) {
-			
+
 			// W key
 			if (sceneModels[0].ty < 0.75) sceneModels[0].ty += 0.03;
 		}
 		if (currentlyPressedKeys[83]) {
-			
+
 			// S key
-			
+
 			if (sceneModels[0].ty > -0.75) sceneModels[0].ty -= 0.03;
 		}
-		
+
 		if (currentlyPressedKeys[38]) {
-			
+
 			// up key
-			
+
 			if (sceneModels[1].ty < 0.75) sceneModels[1].ty += 0.03;
 		}
-		
+
 		if (currentlyPressedKeys[40]) {
-			
+
 			// down key
-			
+
 			if (sceneModels[1].ty > -0.75) sceneModels[1].ty -= 0.03;
-		}	
+		}
+
+	if (currentlyPressedKeys[187])
+	{
+		nivel++;
+	}
+	if (currentlyPressedKeys[189])
+	{
+		if(nivel > 1) nivel--;
+	}
 	}
 }
 

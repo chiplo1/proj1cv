@@ -232,6 +232,15 @@ The fragment shader is the same simple one.
 <script type="text/javascript" src="initShaders.js"></script>
 
 <script type="text/javascript" src="WebGL_example_NEW.js"></script>
+<style>
+	.center {
+  margin: auto;
+  clear: both;
+  width: 40%;
+  padding: 10px;
+}
+</style>
+
 
 </head>
 
@@ -239,15 +248,29 @@ The fragment shader is the same simple one.
 
 	<div style="text-align: center">
 		
-		<p>Model animation with several light sources - Per Vertex Shading on the GPU</p>
-		
+		<h1>Pong</h1>
+
+		<div class="center">
+			<span style="color: red; float: left"><h2 align="left" id="one"></h2></span>
+			<span style="color: blue; float: right"><h2 align="right" id="two"></h2></span>
+		</div>
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 		<canvas id="my-canvas" style="border:1px solid #000000;" width="800" height="400" ></canvas>
 		
 		<!-- NEW --- To show the number of frames per second -->
 		
-		<p id="fps"> fps: </p>
+		<p id="fps"></p>
+		<p id="level"></p>
 		
 		<p><b>Press P to play/pause</b></p>
+		<p><b>Change speed level with + and - keys.</b></p>
 		
 		<p>Choose the <b>projection type</b>:
 		
