@@ -482,7 +482,7 @@ function game() {
 
 	lastTime = timeNow;
 
-	document.getElementById('level').innerHTML = 'Speed Level:' + nivel;
+
 	document.getElementById('one').innerHTML = 'Player One:' + playerOne;
 	document.getElementById('two').innerHTML = 'Player Two:' + playerTwo;
 
@@ -500,6 +500,7 @@ function tick() {
 	//animate();
 	
 	if(status=='play') game();
+	if(status == 'pause') document.getElementById('level').innerHTML = 'Speed Level:' + nivel;
 	
 	handleKeys();
 }
@@ -592,6 +593,17 @@ function setEventListeners( canvas ){
 							else{
 								if (status == 'pause') status = 'play';
 								else status = 'pause';
+							}
+						break;
+						case 43 : //aumentar velocidade
+							if(status == 'pause')
+							{
+								nivel++;
+							}
+						break;
+						case 45 : //diminuir velocidade
+							if((status == 'pause') && nivel > 1) {
+								nivel--;
 							}
 						break;
 					}
@@ -743,15 +755,6 @@ function handleKeys() {
 
 			if (sceneModels[1].ty > -0.75) sceneModels[1].ty -= 0.03;
 		}
-
-	if (currentlyPressedKeys[187])
-	{
-		nivel++;
-	}
-	if (currentlyPressedKeys[189])
-	{
-		if(nivel > 1) nivel--;
-	}
 	}
 }
 
