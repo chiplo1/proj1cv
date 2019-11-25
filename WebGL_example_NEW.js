@@ -485,6 +485,7 @@ function game() {
 
 	document.getElementById('one').innerHTML = 'Player One:' + playerOne;
 	document.getElementById('two').innerHTML = 'Player Two:' + playerTwo;
+	document.getElementById('level').innerHTML = 'Speed Level:' + nivel;
 
 }
 //----------------------------------------------------------------------------
@@ -493,6 +494,10 @@ function game() {
 
 function tick() {
 	
+	document.getElementById('one').innerHTML = 'Player One:' + playerOne;
+	document.getElementById('two').innerHTML = 'Player Two:' + playerTwo;
+	document.getElementById('level').innerHTML = 'Speed Level:' + nivel;
+	
 	requestAnimFrame(tick);
 	
 	drawScene();
@@ -500,7 +505,6 @@ function tick() {
 	//animate();
 	
 	if(status=='play') game();
-	if(status == 'pause') document.getElementById('level').innerHTML = 'Speed Level:' + nivel;
 	
 	handleKeys();
 }
