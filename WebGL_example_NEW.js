@@ -369,56 +369,6 @@ function drawScene() {
 
 var lastTime = 0;
 
-function animate() {
-	
-	var timeNow = new Date().getTime();
-	
-	if( lastTime != 0 ) {
-		
-		var elapsed = timeNow - lastTime;
-		
-		// Global rotation
-		
-		if( globalRotationYY_ON ) {
-
-			globalAngleYY += globalRotationYY_DIR * globalRotationYY_SPEED * (90 * elapsed) / 1000.0;
-	    }
-
-		// For every model --- Local rotations
-		
-		for(var i = 0; i < sceneModels.length; i++ )
-	    {
-			if( sceneModels[i].rotXXOn ) {
-
-				sceneModels[i].rotAngleXX += sceneModels[i].rotXXDir * sceneModels[i].rotXXSpeed * (90 * elapsed) / 1000.0;
-			}
-
-			if( sceneModels[i].rotYYOn ) {
-
-				sceneModels[i].rotAngleYY += sceneModels[i].rotYYDir * sceneModels[i].rotYYSpeed * (90 * elapsed) / 1000.0;
-			}
-
-			if( sceneModels[i].rotZZOn ) {
-
-				sceneModels[i].rotAngleZZ += sceneModels[i].rotZZDir * sceneModels[i].rotZZSpeed * (90 * elapsed) / 1000.0;
-			}
-		}
-		
-		// Rotating the light sources
-	
-		for(var i = 0; i < lightSources.length; i++ )
-	    {
-			if( lightSources[i].isRotYYOn() ) {
-
-				var angle = lightSources[i].getRotAngleYY() + lightSources[i].getRotationSpeed() * (90 * elapsed) / 1000.0;
-		
-				lightSources[i].setRotAngleYY( angle );
-			}
-		}
-	}
-	
-	lastTime = timeNow;
-}
 
 function game() {
 	
