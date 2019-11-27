@@ -168,7 +168,11 @@ var lightSources = [];
 
 lightSources.push( new LightSource() );
 
-lightSources[0].setPosition( 0.0, 0.0, 0.75, 1.0 );
+lightSources[0].setPosition( 0.0, 0.0, 1.0, 0.0 );
+
+lightSources.push( new LightSource() );
+
+lightSources[1].setPosition( 0.0, 0.0, 0.5, 1.0 );
 
 /*
 lightSources.push( new LightSource() );
