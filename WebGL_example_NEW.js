@@ -375,20 +375,44 @@ function game() {
 	var timeNow = new Date().getTime();
 	// Check if ball hits stick
 	
-	if((sceneModels[2].tx >=  0.86 && sceneModels[2].tx <=  0.92 )){
-		if(sceneModels[1].ty >= (sceneModels[2].ty-0.2) && sceneModels[1].ty <= (sceneModels[2].ty+0.2))
-		right = false;
-		count++;
+	if((sceneModels[2].tx >=  0.86 && sceneModels[2].tx <=  0.90 )){
+		if(sceneModels[1].ty >= (sceneModels[2].ty-0.25) && sceneModels[1].ty <= (sceneModels[2].ty+0.25)){
+			if(right){
+				right = false;
+				count++;
+			}
+		}
 	}
-	if((sceneModels[2].tx <= -0.86 && sceneModels[2].tx >= -0.92 )){
-		if(sceneModels[0].ty >= (sceneModels[2].ty-0.2) && sceneModels[0].ty <= (sceneModels[2].ty+0.2))
-		right = true;;
-		count++;
+	if((sceneModels[2].tx <= -0.86 && sceneModels[2].tx >= -0.90 )){
+		if(sceneModels[0].ty >= (sceneModels[2].ty-0.25) && sceneModels[0].ty <= (sceneModels[2].ty+0.25)){
+			if(!right){
+				right = true;;
+				count++;
+			}
+		}
+	}
+	
+	// Check if balls hits top or bottom of stick
+	if((sceneModels[2].tx >=  0.91 && sceneModels[2].tx <=  0.99 )){
+		if(sceneModels[2].ty+0.25 <= (sceneModels[1].ty) && sceneModels[2].ty+0.36 >= (sceneModels[1].ty)){
+			if(up) up = false;
+		}
+		if(sceneModels[2].ty-0.25 >= (sceneModels[1].ty) && sceneModels[2].ty-0.36 <= (sceneModels[1].ty)){
+			if(!up) up = true;
+		}
+	}
+	if((sceneModels[2].tx <= -0.91 && sceneModels[2].tx >= -0.99 )){
+		if(sceneModels[2].ty+0.25 <= (sceneModels[0].ty) && sceneModels[2].ty+0.36 >= (sceneModels[0].ty)){
+			if(up) up = false;
+		}
+		if(sceneModels[2].ty-0.25 >= (sceneModels[0].ty) && sceneModels[2].ty-0.36 <= (sceneModels[0].ty)){
+			if(!up) up = true;
+		}
 	}
 	
 	// Point done, restart ball pos
 
-	if(sceneModels[2].tx >=  0.95){
+	if(sceneModels[2].tx >=  0.96){
 		count = 0;
 		nivel = 1;
 		playerOne++;
@@ -397,7 +421,7 @@ function game() {
 		right = Math.random() >= 0.5;
 		up = Math.random() >= 0.5;
 	}
-	if(sceneModels[2].tx <= -0.95){
+	if(sceneModels[2].tx <= -0.96){
 		count = 0;
 		nivel = 1;
 		playerTwo++;
