@@ -271,9 +271,6 @@ function drawScene() {
 		
 		pos_Viewer[2] = 1.0;  
 		
-		// TO BE DONE !
-		
-		// Allow the user to control the size of the view volume
 	}
 	else {	
 
@@ -282,8 +279,6 @@ function drawScene() {
 		// Viewer is at (0,0,0)
 		
 		// Ensure that the model is "inside" the view volume
-		
-		
 		
 		pMatrix = perspective( 45, 1, 0.05, 15 );
 		
@@ -296,10 +291,7 @@ function drawScene() {
 		pos_Viewer[0] = pos_Viewer[1] = pos_Viewer[2] = 0.0;
 		
 		pos_Viewer[3] = 1.0;  
-		
-		// TO BE DONE !
-		
-		// Allow the user to control the size of the view volume
+
 	}
 	
 	// Passing the Projection Matrix to apply the current projection
@@ -360,15 +352,7 @@ function drawScene() {
 	countFrames();
 }
 
-//----------------------------------------------------------------------------
-//
-//  NEW --- Animation
-//
-
-// Animation --- Updating transformation parameters
-
 var lastTime = 0;
-
 
 function game() {
 	
@@ -464,6 +448,58 @@ function game() {
 }
 //----------------------------------------------------------------------------
 
+// Handling mouse events
+
+// Adapted from www.learningwebgl.com
+
+
+var mouseDown = false;
+
+var lastMouseX = null;
+
+var lastMouseY = null;
+
+function handleMouseDown(event) {
+	
+    mouseDown = true;
+  
+    lastMouseX = event.clientX;
+  
+    lastMouseY = event.clientY;
+}
+
+function handleMouseUp(event) {
+
+    mouseDown = false;
+}
+
+function handleMouseMove(event) {
+
+    if (!mouseDown) {
+	  
+      return;
+    } 
+  
+    // Rotation angles proportional to cursor displacement
+    
+    var newX = event.clientX;
+  
+    var newY = event.clientY;
+
+    var deltaX = newX - lastMouseX;
+    
+    lightSources[0].position[0]+=(radians( 2.0 * deltaX  ));
+
+    var deltaY = newY - lastMouseY;
+    
+    lightSources[0].position[1]-=(radians( 1.0 * deltaY  ));
+    
+    lastMouseX = newX
+    
+    lastMouseY = newY;
+  }
+//----------------------------------------------------------------------------
+
 // Timer
 
 function tick() {
@@ -473,24 +509,12 @@ function tick() {
 	document.getElementById('level').innerHTML = 'Speed Level:' + nivel;
 	
 	requestAnimFrame(tick);
-	
-	drawScene();
-	
-	//animate();
-	
+		
 	if(status=='play') game();
 	
 	handleKeys();
-}
-
-
-//----------------------------------------------------------------------------
-//
-//  User Interaction
-//
-
-function outputInfos(){
-    
+	
+	drawScene();
 }
 
 //----------------------------------------------------------------------------
@@ -688,60 +712,6 @@ function initWebGL( canvas ) {
 		alert("Could not initialise WebGL, sorry! :-(");
 	}        
 }
-//----------------------------------------------------------------------------
-
-// Handling mouse events
-
-// Adapted from www.learningwebgl.com
-
-
-var mouseDown = false;
-
-var lastMouseX = null;
-
-var lastMouseY = null;
-
-function handleMouseDown(event) {
-	
-    mouseDown = true;
-  
-    lastMouseX = event.clientX;
-  
-    lastMouseY = event.clientY;
-}
-
-function handleMouseUp(event) {
-
-    mouseDown = false;
-}
-
-function handleMouseMove(event) {
-
-    if (!mouseDown) {
-	  
-      return;
-    } 
-  
-    // Rotation angles proportional to cursor displacement
-    
-    var newX = event.clientX;
-  
-    var newY = event.clientY;
-
-    var deltaX = newX - lastMouseX;
-    
-    angleYY += radians( 10 * deltaX  )
-
-    var deltaY = newY - lastMouseY;
-    
-    angleXX += radians( 10 * deltaY  )
-    
-    lastMouseX = newX
-    
-    lastMouseY = newY;
-  }
-//----------------------------------------------------------------------------
-//----------------------------------------------------------------------------
 
 function runWebGL() {
 	
@@ -752,10 +722,9 @@ function runWebGL() {
 	shaderProgram = initShaders( gl );
 	
 	setEventListeners( canvas );
-	
+		
 	tick();		// A timer controls the rendering / animation    
-
-	outputInfos();
+	
 }
 
 var currentlyPressedKeys = {};

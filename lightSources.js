@@ -91,6 +91,18 @@ LightSource.prototype.setPosition = function( x, y, z, w ) {
 	this.position[3] = w;
 }
 
+LightSource.prototype.setPositionX = function( x ) {
+	
+	this.position[0] = x;
+	
+}
+
+LightSource.prototype.setPositionY = function( y ) {
+
+	this.position[1] = y;
+	
+}
+
 LightSource.prototype.getIntensity = function() {
 	
 	return this.intensity;
@@ -168,21 +180,12 @@ var lightSources = [];
 
 lightSources.push( new LightSource() );
 
-lightSources[0].setPosition( 0.0, 0.0, 1.0, 0.0 );
+lightSources[0].setPosition( 0.0, 0.0, 1.0, 1.0 );
 
-lightSources.push( new LightSource() );
+lightSources[0].setIntensity(1,1,1);
 
-lightSources[1].setPosition( 0.0, 0.0, 0.5, 1.0 );
 
-/*
-lightSources.push( new LightSource() );
 
-lightSources[1].setPosition( 0.0, -2.0, 1.0, 1.0 );
-
-lightSources.push( new LightSource() );
-
-lightSources[2].setPosition( 0.0, 2.0, 1.0, 1.0 );
-*/
 
 
 

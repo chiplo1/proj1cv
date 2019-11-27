@@ -242,8 +242,6 @@ sceneModels[0].kDiff = [ 1.0, 0.0, 0.0 ];
 
 sceneModels[0].kSpec = [ 1.0, 0.0, 0.0 ];
 
-
-
 // Model 1 --- Right
 
 sceneModels.push( new cubeModel( 1 ) );
@@ -255,8 +253,6 @@ sceneModels[1].sx = 0.04; sceneModels[1].sy = 0.25 ; sceneModels[1].sz = 0.04;
 sceneModels[1].kDiff = [ 0.0, 0.0, 1.0 ];
 
 sceneModels[1].kSpec = [ 0.0, 0.0, 1.0 ];
-
-
 
 // Model 2 --- Ball Middle
 
@@ -281,6 +277,3 @@ sceneModels[3].sx = 1.4; sceneModels[3].sy = 1.4 ; sceneModels[3].sz = 0.1;
 sceneModels[3].kDiff = [ 1.0, 1.0, 0.0 ];
 
 sceneModels[3].kSpec = [ 1.0, 1.0, 0.0 ];
-
-
-
