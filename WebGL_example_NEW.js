@@ -527,6 +527,39 @@ function setEventListeners( canvas ){
 		}  	
 	}); 
 	
+	document.getElementById("ppbutton").onclick = function(){
+		 if (status=='begin'){
+			right = Math.random() >= 0.5;
+			up = Math.random() >= 0.5;
+			status='play';
+		}
+		else{
+			if (status == 'pause') status = 'play';
+			else status = 'pause';
+		}
+	};
+	document.getElementById("resetbutton").onclick = function(){
+		right = Math.random() >= 0.5;
+		up = Math.random() >= 0.5;
+		nivel=1;
+		status = 'begin';
+		count = 0;
+		playerOne = 0;
+		playerTwo = 0;
+		sceneModels[2].tx = 0;
+		sceneModels[2].ty = 0;
+	};
+	document.getElementById("plusbutton").onclick = function(){
+		if(status == 'pause'){
+			nivel++;
+		}
+	};
+	document.getElementById("minusbutton").onclick = function(){
+		if((status == 'pause') && nivel > 1) {
+			nivel--;
+		}		 
+	};
+	
 	function handleKeyDown(event) {
 		
         currentlyPressedKeys[event.keyCode] = true;
@@ -574,8 +607,7 @@ function setEventListeners( canvas ){
 							}
 						break;
 						case 43 : //aumentar velocidade
-							if(status == 'pause')
-							{
+							if(status == 'pause'){
 								nivel++;
 							}
 						break;
@@ -583,6 +615,28 @@ function setEventListeners( canvas ){
 							if((status == 'pause') && nivel > 1) {
 								nivel--;
 							}
+						break;
+						case 82 : //Reiniciar o jogo
+							right = Math.random() >= 0.5;
+							up = Math.random() >= 0.5;
+							nivel=1;
+							status = 'begin';
+							count = 0;
+							playerOne = 0;
+							playerTwo = 0;
+							sceneModels[2].tx = 0;
+							sceneModels[2].ty = 0;
+						break;
+						case 114 : //diminuir velocidade
+							right = Math.random() >= 0.5;
+							up = Math.random() >= 0.5;
+							nivel=1;
+							status = 'begin';
+							count = 0;
+							playerOne = 0;
+							playerTwo = 0;
+							sceneModels[2].tx = 0;
+							sceneModels[2].ty = 0;
 						break;
 					}
 	});

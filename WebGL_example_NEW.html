@@ -254,21 +254,24 @@ The fragment shader is the same simple one.
 			<span style="color: red; float: left"><h2 align="left" id="one"></h2></span>
 			<span style="color: blue; float: right"><h2 align="right" id="two"></h2></span>
 		</div>
-
-		<br>
-		<br>
-		<br>
-		<br>
+				
 		<canvas id="my-canvas" style="border:1px solid #000000;" width="800" height="400" ></canvas>
 		
 		<!-- NEW --- To show the number of frames per second -->
 		
-		<p id="fps"></p>
-		<p id="level"></p>
 		
-		<p><b>Press P to play/pause</b></p>
-		<p><b>Change speed level with + and - keys.</b></p>
+		<div class="center">
+			<span id="fps"></span> 
+			<span>&nbsp;</span>
+			<span id="level"></span>
+		</div>
 		
+		<p><b>Press P to play/pause and R to Reset Game</b>
+		<button id="ppbutton">Play/Pause</button>
+		<button id="resetbutton">Reset</button>
+		<p><b>Change speed level with + and - keys (Paused Only)</b>
+		<button id="plusbutton">+</button>
+		<button id="minusbutton">-</button>
 		<p>Choose the <b>projection type</b>:
 		
         <select id="projection-selection">
