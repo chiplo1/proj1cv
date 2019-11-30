@@ -236,7 +236,7 @@ The fragment shader is the same simple one.
 	.center {
   margin: auto;
   clear: both;
-  width: 40%;
+  width: 46%;
   padding: 10px;
 }
 </style>
@@ -247,14 +247,16 @@ The fragment shader is the same simple one.
 <body onload="runWebGL();">
 
 	<div style="text-align: center">
-		
+			
 		<h1>Pong</h1>
 
 		<div class="center">
 			<span style="color: red; float: left"><h2 align="left" id="one"></h2></span>
 			<span style="color: blue; float: right"><h2 align="right" id="two"></h2></span>
 		</div>
-				
+		<h4>Click and drag to change light source position</h4>	
+		<span style="float: center"><h4 id="xy"></h4></span>
+
 		<canvas id="my-canvas" style="border:1px solid #000000;" width="800" height="400" ></canvas>
 		
 		<!-- NEW --- To show the number of frames per second -->

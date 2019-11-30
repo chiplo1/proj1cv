@@ -30,6 +30,8 @@ var globalAngleYY = 0.0;
 
 var globalTz = 0.0;
 
+var globalTy = 0.0;
+
 // GLOBAL Animation controls
 
 var globalRotationYY_ON = 0;
@@ -307,7 +309,7 @@ function drawScene() {
 	
 	// GLOBAL TRANSFORMATION FOR THE WHOLE SCENE
 	
-	mvMatrix = translationMatrix( 0, 0, globalTz );
+	mvMatrix = translationMatrix( 0, globalTy, globalTz );
 	
 	// NEW - Updating the position of the light sources, if required
 	
@@ -488,11 +490,11 @@ function handleMouseMove(event) {
 
     var deltaX = newX - lastMouseX;
     
-    lightSources[0].position[0]+=(radians( 2.0 * deltaX  ));
+    lightSources[0].position[0]+=0.01*( 2 * deltaX  ); 
 
     var deltaY = newY - lastMouseY;
     
-    lightSources[0].position[1]-=(radians( 1.0 * deltaY  ));
+    lightSources[0].position[1]-=0.01*( 1 * deltaY  );
     
     lastMouseX = newX
     
@@ -507,6 +509,7 @@ function tick() {
 	document.getElementById('one').innerHTML = 'Player One:' + playerOne;
 	document.getElementById('two').innerHTML = 'Player Two:' + playerTwo;
 	document.getElementById('level').innerHTML = 'Speed Level:' + nivel;
+	document.getElementById('xy').innerHTML = 'X :' + parseFloat(Math.round(lightSources[0].position[0] * 100) / 100).toFixed(2) + '   Y :' + parseFloat(Math.round(lightSources[0].position[1] * 100) / 100).toFixed(2);
 	
 	requestAnimFrame(tick);
 		
